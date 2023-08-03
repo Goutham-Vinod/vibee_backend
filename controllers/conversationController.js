@@ -26,10 +26,10 @@ export const createNewConversation = async (req, res) => {
     console.log("here")
     const { id } = req.user
     let { members, isGroupChat, chatName } = req.body
-    console.log(members)
+console.log(members.length);
     // if (isGroupChat) members = JSON.parse(members)
-    console.log(members)
-    members.push(id)
+    let groupMembers = members.length===1?members:members.split(',')
+    groupMembers.push(id)
     let conversation
     if (isGroupChat) {
       if (!chatName?.trim().length)
@@ -40,11 +40,11 @@ export const createNewConversation = async (req, res) => {
         chatName,
         isGroupChat: true,
         groupAdmin: id,
-        users: members,
+        users: groupMembers,
       })
     } else {
       let existing = await conversationModel.find({
-        users: { $all: members },
+        users: { $all: groupMembers },
         isGroupChat: false,
       })
       console.log(existing)
@@ -55,7 +55,7 @@ export const createNewConversation = async (req, res) => {
         })
       }
       conversation = new conversationModel({
-        users: members,
+        users: groupMembers,
       })
     }
     if (req.file) {
@@ -66,6 +66,7 @@ export const createNewConversation = async (req, res) => {
     }
     await conversation.save()
     await conversation.populate("users")
+    console.log(conversation);
     return res.status(201).json(conversation)
   } catch (error) {
     console.log(error)
