@@ -18,11 +18,12 @@ const upload = multer({
   storage,
   limits: { fileSize: maxSize },
   fileFilter: (req, file, cb) => {
-    
+    console.log('inside multer file filter');
     const filetypes = /jpeg|jpg|png|webp|mp4|avi|mov|flv|wmv/
     const extname = filetypes.test(
       path.extname(file.originalname).toLowerCase()
     )
+    
 
 
     const mimetype = filetypes.test(file.mimetype)

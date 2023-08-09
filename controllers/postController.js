@@ -18,6 +18,7 @@ import { v2 as cloudinary } from "cloudinary"
 import { promises as fs } from "fs"
 
 export const createPost = async (req, res) => {
+  
   try {
 
     console.log(req.body)
