@@ -1,7 +1,7 @@
 import multer from "multer"
 import path from "path"
 
-const maxSize = 10 * 1000 * 1000
+const maxSize = 50 * 1024 * 1024
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
