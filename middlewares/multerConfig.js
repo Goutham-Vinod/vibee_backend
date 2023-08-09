@@ -25,11 +25,13 @@ const upload = multer({
       
     )
 
+
     const mimetype = filetypes.test(file.mimetype)
     
     if (mimetype && extname) {
       return cb(null, true)
     } else {
+      console.log('Error inside multer else bloc');
       return cb(null, false)
     }
   },

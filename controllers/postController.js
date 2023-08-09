@@ -405,7 +405,7 @@ export const getAllDetailsOfSinglePost = async (req, res) => {
     const { postId } = req.params
     const post = await postModel.findById(postId)
     if (!post) return res.status(404).json({ message: "Page not found" })
-    if (post.shared) return res.status(301).json({ id: post.postId })
+    if (post.shared) return res.status(201).json({ id: post.postId })
     if (post.privacy === "private" && !user.friends.includes(post.createdBy))
       return res.status(403).json({ message: "User not authorized" })
     await post.populate({ path: "createdBy", select: "-password" })
