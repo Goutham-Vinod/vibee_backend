@@ -22,13 +22,13 @@ const upload = multer({
     const filetypes = /jpeg|jpg|png|webp|mp4|avi|mov|flv|wmv/
     const extname = filetypes.test(
       path.extname(file.originalname).toLowerCase()
-      
     )
 
 
     const mimetype = filetypes.test(file.mimetype)
     
     if (mimetype && extname) {
+      console.log('Inside multer if case');
       return cb(null, true)
     } else {
       console.log('Error inside multer else bloc');
