@@ -158,7 +158,7 @@ io.on("connection", (socket) => {
     }
   })
 
-  socket.on("videoCall", async ( data ) => {
+  socket.on("videoCall", async (data) => {
     console.log('video call event recived');
 
     console.log('__________________Socket io_____________________')
