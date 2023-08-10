@@ -158,11 +158,11 @@ io.on("connection", (socket) => {
     }
   })
 
-  socket.on("videoCall", async ({ data, id }) => {
+  socket.on("videoCall", async ({ data }) => {
     console.log('video call event recived');
 
     console.log('__________________Socket io_____________________')
-    console.log('videoCall json request',data,id);
+    console.log('videoCall json request',data);
     console.log('_______________________________________')
     try {
       const user = await userModel.findById(id)
