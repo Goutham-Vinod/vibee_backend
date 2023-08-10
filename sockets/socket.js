@@ -165,7 +165,7 @@ io.on("connection", (socket) => {
     console.log('videoCall json request',data);
     console.log('_______________________________________')
     try {
-      const user = await userModel.findById(id)
+      const user = await userModel.findById(data.from._id)
       if (!user.friends.includes(data.to._id))
         return socket.emit("unauthorizedCall")
         console.log('__________________Socket io_____________________')
